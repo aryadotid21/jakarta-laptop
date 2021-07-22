@@ -17,15 +17,15 @@ use Illuminate\Support\Facades\Hash;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Auth::routes();
 
 
 Route::group(['middleware'=>'user'],function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.dashboard');
-    Route::get('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('user.order.view');
-    Route::post('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('user.order.proccess');
+    Route::get('/order', [App\Http\Controllers\OrderController::class, 'OrderView'])->name('user.order.view');
+    Route::post('/order', [App\Http\Controllers\OrderController::class, 'OrderProccess'])->name('user.order.proccess');
 });
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
@@ -43,5 +43,6 @@ Route::get('/test',function(){
 //         'email'=>'arya@gmail.com',
 //         'password'=>Hash::make('40264026'),
 //   ]);
-    echo(User::find(3)->laptop);
+    // echo(User::find(3)->laptop);
+    echo str_replace(["Rp"," ",".",","], "", "Rp500.000");
 });
