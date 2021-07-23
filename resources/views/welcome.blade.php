@@ -54,6 +54,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('user.order.history') }}">Order History</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -71,7 +72,7 @@
     </nav>
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="3000">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1500">
                 <h1 class="heading mb-3">Butuh Laptop Cepat?
                     <span class="text-primary">Jakarta Laptop.</span> aja
                 </h1>
@@ -83,10 +84,16 @@
                     Telah dipercaya berbagai perusahaan di Jakarta dan Indonesia untuk jasa rental laptop dan multimedia
                     lainnya.
                 </p>
-                <a href="{{ route('user.order.view') }}"><button type="button" class="btn btn-primary btn-custom1 mr-1"
-                        style="width:150px">Order Now</button></a>
+                @guest
+                    <a href="{{ route('login') }}"><button type="button" class="btn btn-primary btn-custom1 mr-1"
+                            style="width:150px">Order Now!</button></a>
+                @else
+                    <a href="{{ route('user.order.view') }}"><button type="button"
+                            class="btn btn-primary btn-custom1 mr-1" style="width:150px">Order Now!</button></a>
+                @endguest
+
             </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="3000">
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1500">
                 <div class="text-md-right text-center"><img src="{{ asset('images/atl-2-c.png') }}" class="img-fluid"
                         style="width:70%"></div>
             </div>
@@ -99,15 +106,15 @@
             </path>
         </svg>
         <div class="container">
-            <div class="col-lg-12 text-center">
-                <h4 class="title mb-3" data-aos="fade-down" data-aos-duration="3000">Our Products</h4>
-                <p class="text-muted para-desc mx-auto mb-4" data-aos="fade-down" data-aos-duration="2000">
+            <div class="col-lg-12 text-center" data-aos="fade-down" data-aos-duration="1500">
+                <h4 class="title mb-3">Our Products</h4>
+                <p class="text-muted para-desc mx-auto mb-4">
                     Various kinds of products that we provide in
                     <a class="text-primary font-weight-bold" href="#">Jakarta Laptop</a></span>.
                 </p>
             </div>
             <div class="card-deck">
-                <div class="card" data-aos="fade-right" data-aos-duration="3000">
+                <div class="card" data-aos="fade-right" data-aos-duration="1500">
                     <img class="card-img-top" src="{{ asset('images/product/macbook3.png') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Macbook Pro 13 2020</h5>
@@ -116,7 +123,7 @@
                         <p class="card-text"><small class="text-muted">IDR 175 K / Day</small></p>
                     </div>
                 </div>
-                <div class="card" data-aos="fade-down" data-aos-duration="3000">
+                <div class="card" data-aos="fade-down" data-aos-duration="1500">
                     <img class="card-img-top" src="{{ asset('images/product/surface3.png') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Microsoft Surface Pro 7</h5>
@@ -126,7 +133,7 @@
                         <p class="card-text"><small class="text-muted">IDR 120 K / Day</small></p>
                     </div>
                 </div>
-                <div class="card" data-aos="fade-left" data-aos-duration="3000">
+                <div class="card" data-aos="fade-left" data-aos-duration="1500">
                     <img class="card-img-top" src="{{ asset('images/product/thinkpad3.png') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Thinkpad X1 Carbon Gen 9</h5>
@@ -149,9 +156,9 @@
         <div class="d-flex justify-content-center">
             <div class="jumbotron"
                 style="background-color:white;max-width:800px;border-radius:25px;border:0.8px solid #F8F9FA"
-                data-aos="fade-up" data-aos-duration="3000">
+                data-aos="fade-up" data-aos-duration="1500">
                 <h1 style="text-align:center">Got a Question?</h1>
-                <form method="POST" action="/question" id="question">
+                <form method="POST" action="{{ route('question.store') }}" id="question">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-12">
@@ -212,11 +219,10 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="jumbotron" style="text-align: center;background-color: #202942;">
-                    <a href="https://www.instagram.com/zakiyyahoktv_/" style="font-size:30px"
-                        class="fa fa-instagram"></a>
+                    <a href="https://www.instagram.com/dya_az/" style="font-size:30px" class="fa fa-instagram"></a>
                     <a href="https://goo.gl/maps/1Pj9YT9xEJKBL4oaA" style="font-size:30px" class="fa fa-map-marker"></a>
                     <a href="https://wa.me/+62895613367705" style="font-size:30px" class="fa fa-whatsapp"></a>
-                    <h6 style="color:rgb(223, 223, 223);">M Arya Dyas & Zakiyyah N Oktaviani</h6>
+                    <h6 style="color:rgb(223, 223, 223);">Muhammad Arya Dyas</h6>
                     <h6 style="color:rgb(223, 223, 223);">&#169; {{ date('Y') }}</h6>
                     <h4 style="color:rgb(158, 158, 158)">SMKN 1 Cibinong</h4>
                     <a href="#" class="fa fa-angle-up" style="margin-bottom: -10%;color:rgb(223, 223, 223);"></a>
@@ -227,7 +233,9 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         window.addEventListener('scroll', (e) => {
             const nav = document.querySelector('.navbar');
@@ -239,7 +247,7 @@
         });
         AOS.init();
     </script>
-
+    @include('sweetalert::alert')
 </body>
 
 </html>

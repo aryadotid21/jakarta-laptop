@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Laptop;
+use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\QuestionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,28 +25,39 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('question', QuestionController::class);
 
 Route::group(['middleware'=>'user'],function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.dashboard');
-    Route::get('/order', [App\Http\Controllers\OrderController::class, 'OrderView'])->name('user.order.view');
-    Route::post('/order', [App\Http\Controllers\OrderController::class, 'OrderProccess'])->name('user.order.proccess');
+    Route::get('/home', [HomeController::class, 'index'])->name('user.dashboard');
+    Route::get('/history', [OrderController::class, 'OrderHistory'])->name('user.order.history');
+    Route::get('/order', [OrderController::class, 'OrderView'])->name('user.order.view');
+    Route::post('/order', [OrderController::class, 'OrderProccess'])->name('user.order.proccess');
 });
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('/home', [HomeController::class, 'index'])->name('admin.dashboard');
 });
 
 Route::group(['prefix'=>'technician','middleware'=>'technician'],function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('technician.dashboard');
+    Route::get('/home', [HomeController::class, 'index'])->name('technician.dashboard');
 });
 
-Route::get('/test',function(){
-//     $data = User::create([
-//         'name'=>'Muhammad Arya Dyas',
-//         'role_id'=>2,
-//         'email'=>'arya@gmail.com',
-//         'password'=>Hash::make('40264026'),
-//   ]);
-    // echo(User::find(3)->laptop);
-    echo str_replace(["Rp"," ",".",","], "", "Rp500.000");
-});
+// Route::get('/test',function(){
+// //     $data = User::create([
+// //         'name'=>'Muhammad Arya Dyas',
+// //         'role_id'=>2,
+// //         'email'=>'arya@gmail.com',
+// //         'password'=>Hash::make('40264026'),
+// //   ]);
+//     echo(User::find(3)->laptop);
+//     // echo str_replace(["Rp"," ",".",","], "", "Rp500.000");
+// });
+
+// Route::get('/mailer',function(){
+//     $details = [
+//         'title' => 'This email for testing porpouse',
+//         'body' => 'Testing email using smtp'
+//     ];
+//     Mail::to(Auth::user()->email)->send(new \App\Mail\Mailer($details));
+//     echo "Email sended";
+// });

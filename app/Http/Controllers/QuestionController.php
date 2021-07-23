@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Question;
+use Alert;
 class QuestionController extends Controller
 {
     /**
@@ -34,7 +35,13 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Question::create($request->all())){
+            Alert::success('Message Sended', 'Silahkan tunggu admin membalas ke email anda'.', Email : '.$request->email);
+            return redirect(route('index'));
+        } else{
+            Alert::error('Message not sended');
+            return redirect(route('index'));
+        }
     }
 
     /**

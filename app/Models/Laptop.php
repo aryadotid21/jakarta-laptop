@@ -22,8 +22,13 @@ class Laptop extends Model
         'note',
     ];
 
-    public function roles()
+    public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Laptop::class);
     }
 }

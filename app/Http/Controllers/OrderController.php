@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Laptop;
 use App\Models\Order;
+Use Alert;
+Use Auth;
+Use Mail;
 class OrderController extends Controller
 {
     /**
@@ -88,6 +91,12 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function OrderHistory()
+    {
+        $data_laptop = Order::all()->sortByDesc('id')->where('user_id',3);
+        return view('user.order.history',compact("data_laptop"));
+    } 
+
     public function OrderView()
     {
         $data_laptop = Laptop::all();
@@ -96,8 +105,6 @@ class OrderController extends Controller
     
     public function OrderProccess(Request $request)
     {
-        // dd(str_replace(["Rp"," ",".",","], "", $request->total_price));
-        // echo($request->get('user_id','laptop_id','kota','kecamatan','kode_pos','alamat','duration','total_price','pickup_date','status'));
         $order = Order::create([
             'user_id'=>$request->user_id,
             'laptop_id'=>$request->laptop_id,
@@ -108,23 +115,22 @@ class OrderController extends Controller
             'duration'=>$request->duration,
             'total_price'=>str_replace(["Rp"," ",".",","], "", $request->total_price),
             'pickup_date'=>$request->pickup_date,
-            'status'=>"Pending",
+            'status'=>"On Process",
         ]);
          $update = Laptop::findOrFail($request->laptop_id);
          $update->update([
+             'user_id'=> $request->user_id,
              'status'=>'On Process'
          ]);
         if($order&&$update){
-            return response()->json([
-                'success' => true,
-                'message' => 'Order Success!',
-                'order_details' => $order,
-                'laptop_status' => $update
-            ],201);
+            Alert::success('Pemesanan Sukses', 'Silahkan periksa email anda untuk langkah selanjutnya'.', Email : '.Auth::user()->email);
+            $details = $order;
+            Mail::to(Auth::user()->email)->send(new \App\Mail\Mailer($details));
+            return redirect(route('index'));
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Register Failed!',
+                'message' => 'Order Failed!',
                 'data' => ''
             ],400);
         }

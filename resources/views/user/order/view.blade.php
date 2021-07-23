@@ -121,9 +121,6 @@
                                         id="example-datetime-local-input">
                                 </div>
                             </div>
-
-
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
@@ -132,9 +129,6 @@
                                     <a class="btn btn-secondary" href="{{ url()->previous() }}">Cancel</a>
                                 </div>
                             </div>
-
-
-
                         </form>
                     </div>
                 </div>
