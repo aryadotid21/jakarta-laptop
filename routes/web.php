@@ -28,18 +28,19 @@ Auth::routes();
 Route::resource('question', QuestionController::class);
 
 Route::group(['middleware'=>'user'],function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('user.dashboard');
+    Route::get('/home', [HomeController::class, 'user'])->name('user.dashboard');
     Route::get('/history', [OrderController::class, 'OrderHistory'])->name('user.order.history');
     Route::get('/order', [OrderController::class, 'OrderView'])->name('user.order.view');
     Route::post('/order', [OrderController::class, 'OrderProccess'])->name('user.order.proccess');
 });
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('/', [HomeController::class, 'admin'])->name('admin.dashboard');
+    Route::resource('order', OrderController::class);
 });
 
 Route::group(['prefix'=>'technician','middleware'=>'technician'],function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('technician.dashboard');
+    Route::get('/', [HomeController::class, 'technician'])->name('technician.dashboard');
 });
 
 // Route::get('/test',function(){
