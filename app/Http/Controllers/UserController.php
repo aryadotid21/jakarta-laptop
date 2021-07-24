@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Laptop;
-class LaptopController extends Controller
+use App\Models\User;
+use App\Models\Role;
+Use Alert;
+class UserController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all()
+    {
+        $data = User::all();
+        return view('admin.data.user.all',compact('data'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,41 +25,41 @@ class LaptopController extends Controller
      */
     public function index()
     {
-        $data = Laptop::all();
-        return view('admin.data.laptop.all',compact('data'));
+        $data = User::all();
+        return view('admin.data.user.user',compact('data'));
     }
-/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function ready()
-    {
-        $data = Laptop::all();
-        return view('admin.data.laptop.ready',compact('data'));
-    }
-/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function process()
-    {
-        $data = Laptop::all();
-        return view('admin.data.laptop.process',compact('data'));
-    }
-/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function hold()
-    {
-        $data = Laptop::all();
-        return view('admin.data.laptop.hold',compact('data'));
-    }
-
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin()
+    {
+        $data = User::all();
+        return view('admin.data.user.admin',compact('data'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function technician()
+    {
+        $data = User::all();
+        return view('admin.data.user.technician',compact('data'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function roles()
+    {
+        $data = Role::all();
+        return view('admin.data.user.role',compact('data'));
+    }
+    /**
+     * 
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -108,8 +120,15 @@ class LaptopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user)
     {
-        //
+        $delete = User::destroy($user);
+        if($delete){
+        Alert::success('Berhasil menghapus data');
+        return back();
+        } else {
+        Alert::error('Error saat menghapus data', 'Data tidak dihapus');
+        return back();
+        }
     }
 }

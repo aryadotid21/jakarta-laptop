@@ -8,10 +8,10 @@
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>{{ $order->whereNotIn('status', ['Finished'])->count() }}</h3>
-                        <p>New Orders</p>
+                        <p>New Orders ( Today: {{ $order->where('created_at', '>=', Carbon::today())->count() }} )</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-ios-checkmark-outline"></i>
+                        <i class="ion ion-bag"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="small-box bg-primary">
                     <div class="inner">
                         <h3> @currency($order->where('status', 'Finished')->sum('total_price')) </h3>
-                        <p>Total Income ( Pending
+                        <p>Total Income ( Pending:
                             @currency($order->whereNotIn('status',['Finished'])->sum('total_price')) )</p>
                     </div>
                     <div class="icon">
@@ -51,7 +51,7 @@
                 <div class="small-box bg-secondary">
                     <div class="inner">
                         <h3>{{ $laptop->where('status', 'Ready')->count() }}</h3>
-                        <p>Laptop Ready ( Not ready {{ $laptop->whereNotIn('status', ['Ready'])->count() }} )</p>
+                        <p>Laptop Ready ( Not ready: {{ $laptop->whereNotIn('status', ['Ready'])->count() }} )</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-laptop"></i>
@@ -67,7 +67,7 @@
                         <p>Finished Order</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="ion ion-android-checkmark-circle"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -106,7 +106,7 @@
                         <p>Question</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-wrench"></i>
+                        <i class="ion ion-android-mail"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>

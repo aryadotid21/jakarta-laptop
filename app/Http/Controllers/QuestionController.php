@@ -14,7 +14,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $data = Question::all();
+        return view('admin.data.other.question',compact('data'));
     }
 
     /**

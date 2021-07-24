@@ -17,9 +17,30 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $data = Order::all();
+        return view('admin.data.order.all',compact('data'));
     }
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function new()
+    {
+        $data = Order::all();
+        return view('admin.data.order.new',compact('data'));
+    }
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function finished()
+    {
+        $data = Order::all();
+        return view('admin.data.order.finished',compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *
