@@ -1,16 +1,16 @@
 @extends('admin.layouts.app')
-@section('title', 'Data Technician')
+@section('title', 'Data Laptop')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card card-lightblue">
                     <div class="card-header">
-                        <h3 class="card-title">Insert new order</h3>
+                        <h3 class="card-title">Insert new laptop brand</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('admin.user.store') }}">
+                    <form method="POST" action="{{ route('admin.brand.store') }}">
                         @csrf
                         <div class="card-body">
                             <div class="row">
@@ -22,45 +22,11 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Phone Number</label>
-                                        <input type="text" class="form-control" name="phone">
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" name="price">
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" name="email">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Password Confirmation</label>
-                                        <input type="password" class="form-control" name="password_confirmation">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Role</label>
-                                        <select name="role_id" class="custom-select">
-                                            <option value="" selected disabled>Pilih Role</option>
-                                            @foreach ($role as $role)
-                                                <option value="{{ $role->id }}">
-                                                    {{ $role->role }} ({{ $role->id }})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -76,7 +42,7 @@
             <div class="col-12">
                 <div class="card card-lightblue">
                     <div class="card-header">
-                        <h3 class="card-title">Data Technician</h3>
+                        <h3 class="card-title">Data brand laptop</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -84,36 +50,35 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Laptops being checked</th>
+                                    <th>Laptop</th>
+                                    <th>Price</th>
+                                    <th>Jumlah Unit</th>
                                     <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($data->where('role_id', 2) as $key => $data)
+                                @forelse($data as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->email }}</td>
-                                        <td>{{ $data->phone }}</td>
+                                        <td> @currency($data->price) </td>
                                         <td>{{ $data->laptop->count() }}</td>
                                         <td>
                                             <!-- Call to action buttons -->
                                             <ul class="list-inline m-0">
                                                 <li class="list-inline-item">
-                                                    <a href="{{ route('admin.user.edit', $data->id) }}"
+                                                    <a href="{{ route('admin.brand.edit', $data->id) }}"
                                                         class="btn btn-success btn-sm rounded-0" type="button"
                                                         data-toggle="tooltip" data-placement="top" title="Edit"><i
                                                             class="fa fa-edit"></i></a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <form action="{{ route('admin.user.destroy', $data->id) }}"
+                                                    <form class="delete"
+                                                        action="{{ route('admin.brand.destroy', $data->id) }}"
                                                         method="POST">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button class="btn btn-danger btn-sm rounded-0" type="button"
+                                                        <button class="btn btn-danger btn-sm rounded-0" type="submit"
                                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                                 class="fa fa-trash"></i></button>
                                                     </form>
@@ -137,6 +102,8 @@
         </div>
         <!-- /.row -->
     </div>
+    <!-- /.container-fluid -->
+    </section>
 
     <script>
         $(document).ready(function() {

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Question;
+use App\Models\Brand;
 use Alert;
-class QuestionController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $data = Question::all();
-        return view('admin.data.other.question',compact('data'));
+        $data = Brand::all();
+        return view('admin.data.laptop.brand.index',compact('data'));
     }
 
     /**
@@ -36,12 +36,12 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        if(Question::create($request->all())){
-            Alert::success('Message Sended', 'Silahkan tunggu admin membalas ke email anda'.', Email : '.$request->email);
-            return redirect(route('index'));
+        if(Brand::create($request->all())){
+            Alert::success('Brand laptop baru telah ditambahkan', 'Data Berhasil ditambah');
+            return back();
         } else{
-            Alert::error('Message not sended');
-            return redirect(route('index'));
+            Alert::error('Gagal menambah data');
+            return back();
         }
     }
 
@@ -62,9 +62,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($brand)
     {
-        //
+        $data = Brand::find($brand);
+        return view('admin.data.laptop.brand.edit',compact('data'));
     }
 
     /**
@@ -74,9 +75,16 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $brand)
     {
-        //
+        $data = Brand::findOrFail($brand);
+        if($data->update($request->all())){
+            Alert::success('Sukses merubah data','Data berhasil di ubah');
+            return back();
+        } else{
+            Alert::error('Error saat merubah data', 'Data tidak dirubah');
+            return back();
+        }
     }
 
     /**
@@ -85,9 +93,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($question)
+    public function destroy($brand)
     {
-        $delete = Question::destroy($question);
+        $delete = Brand::destroy($brand);
         if($delete){
             Alert::success('Berhasil menghapus data');
             return back();

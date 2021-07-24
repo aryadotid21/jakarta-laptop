@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Brand;
 class Laptop extends Model
 {
     use HasFactory;
@@ -16,8 +17,7 @@ class Laptop extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
-        'price',
+        'brand_id',
         'status',
         'note',
     ];
@@ -30,5 +30,10 @@ class Laptop extends Model
     public function order()
     {
         return $this->hasMany(Laptop::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 }

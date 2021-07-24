@@ -43,8 +43,6 @@
         </div>
         <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-    </section>
 
     <script>
         $(document).ready(function() {
@@ -53,4 +51,5 @@
             });
         });
     </script>
+    @include('sweetalert::alert')
 @endsection

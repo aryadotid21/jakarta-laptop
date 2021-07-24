@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Auth;
 Use Alert;
 class UserController extends Controller
 {
@@ -16,7 +19,8 @@ class UserController extends Controller
     public function all()
     {
         $data = User::all();
-        return view('admin.data.user.all',compact('data'));
+        $role = Role::all();
+        return view('admin.data.user.all',compact('data','role'));
         }
     /**
      * Display a listing of the resource.
@@ -26,7 +30,8 @@ class UserController extends Controller
     public function index()
     {
         $data = User::all();
-        return view('admin.data.user.user',compact('data'));
+        $role = Role::all();
+        return view('admin.data.user.user',compact('data','role'));
     }
     /**
      * Display a listing of the resource.
@@ -36,7 +41,8 @@ class UserController extends Controller
     public function admin()
     {
         $data = User::all();
-        return view('admin.data.user.admin',compact('data'));
+        $role = Role::all();
+        return view('admin.data.user.admin',compact('data','role'));
     }
     /**
      * Display a listing of the resource.
@@ -46,7 +52,8 @@ class UserController extends Controller
     public function technician()
     {
         $data = User::all();
-        return view('admin.data.user.technician',compact('data'));
+        $role = Role::all();
+        return view('admin.data.user.technician',compact('data','role'));
     }
     /**
      * Display a listing of the resource.
@@ -77,7 +84,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = User::create([
+                'name' => $request->name,
+                'role_id' => $request->role_id,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+            ]);
+        if($data){
+            Alert::success('Sukses menambah data','Data berhasil disimpan');
+            return back();
+        } else{
+            Alert::error('Error saat menambah data', 'Data tidak disimpan');
+            return back();
+        } 
     }
 
     /**
@@ -97,9 +117,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user)
     {
-        //
+        $data = User::find($user);
+        $role = Role::all();
+        return view('admin.data.user.edit',compact('data','role'));
     }
 
     /**
@@ -109,9 +131,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
     {
-        //
+        $data = User::findOrFail($user);
+        if($data->update($request->all())){
+            Alert::success('Sukses merubah data','Data berhasil di ubah');
+            return back();
+        } else{
+            Alert::error('Error saat merubah data', 'Data tidak dirubah');
+            return back();
+        }
     }
 
     /**

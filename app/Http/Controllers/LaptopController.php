@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Brand;
 use App\Models\Laptop;
+use Alert;
 class LaptopController extends Controller
 {
     /**
@@ -13,8 +15,9 @@ class LaptopController extends Controller
      */
     public function index()
     {
+        $brand = Brand::all();
         $data = Laptop::all();
-        return view('admin.data.laptop.all',compact('data'));
+        return view('admin.data.laptop.all',compact('data','brand'));
     }
 /**
      * Display a listing of the resource.
@@ -23,8 +26,9 @@ class LaptopController extends Controller
      */
     public function ready()
     {
+        $brand = Brand::all();
         $data = Laptop::all();
-        return view('admin.data.laptop.ready',compact('data'));
+        return view('admin.data.laptop.ready',compact('data','brand'));
     }
 /**
      * Display a listing of the resource.
@@ -33,8 +37,9 @@ class LaptopController extends Controller
      */
     public function process()
     {
+        $brand = Brand::all();
         $data = Laptop::all();
-        return view('admin.data.laptop.process',compact('data'));
+        return view('admin.data.laptop.process',compact('data','brand'));
     }
 /**
      * Display a listing of the resource.
@@ -43,8 +48,9 @@ class LaptopController extends Controller
      */
     public function hold()
     {
+        $brand = Brand::all();
         $data = Laptop::all();
-        return view('admin.data.laptop.hold',compact('data'));
+        return view('admin.data.laptop.hold',compact('data','brand'));
     }
 
     /**
@@ -65,7 +71,26 @@ class LaptopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'brand_id'=>'required|max:10',
+            'stock'=>'required',
+        ]);
+        $data=0;
+        for($x = 1; $x <= $request->stock; $x++) {
+            $data = Laptop::create([
+                'brand_id' => $request->brand_id,
+                'status' => 'Ready',
+                'note' => '',
+            ]);
+          }
+        if(!$data==0){
+            Alert::success('Sukses menambah data','Data berhasil disimpan');
+            return back();
+        } else{
+            Alert::error('Error saat menambah data', 'Data tidak disimpan');
+            return back();
+        // dd((int)$mass);
+    } 
     }
 
     /**
@@ -108,8 +133,15 @@ class LaptopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($laptop)
     {
-        //
+        $delete = Laptop::destroy($laptop);
+        if($delete){
+            Alert::success('Berhasil menghapus data');
+            return back();
+        } else {
+            Alert::error('Error saat menghapus data', 'Data tidak dihapus');
+            return back();
+        }
     }
 }

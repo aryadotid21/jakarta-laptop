@@ -32,8 +32,9 @@ class OrderController extends Controller
     public function new()
     {
         $laptop = Laptop::all();
+        $user = User::all();
         $data = Order::all();
-        return view('admin.data.order.new',compact('data','laptop'));
+        return view('admin.data.order.new',compact('data','laptop','user'));
     }
         /**
      * Display a listing of the resource.
@@ -43,8 +44,9 @@ class OrderController extends Controller
     public function finished()
     {
         $laptop = Laptop::all();
+        $user = User::all();
         $data = Order::all();
-        return view('admin.data.order.finished',compact('data','laptop'));
+        return view('admin.data.order.finished',compact('data','laptop','user'));
     }
     /**
      * Show the form for creating a new resource.
@@ -99,9 +101,12 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($order)
     {
-        //
+        $user = User::all();
+        $laptop = Laptop::all();
+        $data = Order::find($order);
+        return view('admin.data.order.edit',compact('data','user','laptop'));
     }
 
     /**
@@ -111,9 +116,16 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $order)
     {
-        //
+        $data = Order::findOrFail($order);
+        if($data->update($request->all())){
+            Alert::success('Sukses merubah data','Data berhasil di ubah');
+            return back();
+        } else{
+            Alert::error('Error saat merubah data', 'Data tidak dirubah');
+            return back();
+        }
     }
 
     /**

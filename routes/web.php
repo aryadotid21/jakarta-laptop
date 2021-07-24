@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\LaptopController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\BrandController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +56,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','as'=>'admin.'],function()
         Route::get('/process', [LaptopController::class, 'process'])->name('process');
         Route::get('/hold', [LaptopController::class, 'hold'])->name('hold');
     });
+    Route::resource('brand', BrandController::class);
     Route::resource('chart', ChartController::class);
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);

@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('title', 'Data Order')
 @section('content')
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -33,8 +34,9 @@
                                             <option value="" selected disabled>Pilih Laptop</option>
                                             @foreach ($laptop as $laptop)
                                                 @if ($laptop->status == 'Ready'){
-                                                    <option harga="{{ $laptop->price }}" value="{{ $laptop->id }}">
-                                                        {{ $laptop->name }}</option>}
+                                                    <option harga="{{ $laptop->brand->price }}"
+                                                        value="{{ $laptop->id }}">
+                                                        {{ $laptop->brand->name }}</option>}
                                                 @endif
                                             @endforeach
                                         </select>
@@ -150,7 +152,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->user->name }}</td>
-                                        <td>{{ $data->laptop->name }} ({{ $data->laptop->id }})</td>
+                                        <td>{{ $data->laptop->brand->name }} ({{ $data->laptop->id }})</td>
                                         <td>{{ $data->kota }}</td>
                                         <td>{{ $data->kecamatan }}</td>
                                         <td>{{ $data->kode_pos }}</td>
@@ -164,7 +166,8 @@
                                             <!-- Call to action buttons -->
                                             <ul class="list-inline m-0">
                                                 <li class="list-inline-item">
-                                                    <a class="btn btn-success btn-sm rounded-0" type="button"
+                                                    <a href="{{ route('admin.order.edit', $data->id) }}"
+                                                        class="btn btn-success btn-sm rounded-0" type="button"
                                                         data-toggle="tooltip" data-placement="top" title="Edit"><i
                                                             class="fa fa-edit"></i></a>
                                                 </li>
@@ -198,8 +201,6 @@
         </div>
         <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-    </section>
 
     <script>
         $(document).ready(function() {
@@ -208,7 +209,7 @@
             });
         });
         var usedNames = {};
-        $("select[name='laptop'] > option").each(function() {
+        $("select[name='laptop_id'] > option").each(function() {
             if (usedNames[this.text]) {
                 $(this).remove();
             } else {

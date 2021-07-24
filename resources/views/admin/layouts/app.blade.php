@@ -190,6 +190,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a href="{{ route('admin.brand.index') }}"
+                                        class="nav-link {{ Request::routeIs('admin.brand.index') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Brand laptop</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('admin.laptop.index') }}"
                                         class="nav-link {{ Request::routeIs('admin.laptop.index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>

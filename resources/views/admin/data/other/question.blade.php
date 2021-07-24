@@ -19,6 +19,7 @@
                                     <th>Phone</th>
                                     <th>Subject</th>
                                     <th>Created At</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,6 +31,22 @@
                                         <td>{{ $data->phone }}</td>
                                         <td>{{ $data->subject }}</td>
                                         <td>{{ $data->created_at }}</td>
+                                        <td>
+                                            <!-- Call to action buttons -->
+                                            <ul class="list-inline m-0">
+                                                <li class="list-inline-item">
+                                                    <form class="delete"
+                                                        action="{{ route('admin.question.destroy', $data->id) }}"
+                                                        method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="btn btn-danger btn-sm rounded-0" type="submit"
+                                                            data-toggle="tooltip" data-placement="top" title="Delete"><i
+                                                                class="fa fa-trash"></i></button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -57,4 +74,5 @@
             });
         });
     </script>
+    @include('sweetalert::alert')
 @endsection
