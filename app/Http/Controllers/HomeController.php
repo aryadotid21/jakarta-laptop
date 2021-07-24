@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Laptop;
 use App\Models\Order;
 use App\Models\Question;
-Use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use Auth;
 class HomeController extends Controller
 {
@@ -30,6 +30,7 @@ class HomeController extends Controller
     public function user()
     {
         return view('welcome');
+        Alert::success('Pemesanan Sukses', 'Silahkan periksa email anda untuk langkah selanjutnya'.', Email : '.Auth::user()->email);
     }
     public function admin()
     {   
@@ -37,7 +38,10 @@ class HomeController extends Controller
         $order = Order::all();
         $laptop = Laptop::all();
         $question = Question::all();
+        Alert::success('Pemesanan Sukses', 'Silahkan periksa email anda untuk langkah selanjutnya'.', Email : '.Auth::user()->email);
+    
         return view('admin.home',compact('order','user','laptop','question'));
+       
     }
     public function technician()
     {

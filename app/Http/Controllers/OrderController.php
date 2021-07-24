@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Laptop;
 use App\Models\Order;
+use App\Models\User;
 Use Alert;
 Use Auth;
 Use Mail;
@@ -17,8 +18,10 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $laptop = Laptop::all();
+        $user = User::all();
         $data = Order::all();
-        return view('admin.data.order.all',compact('data'));
+        return view('admin.data.order.all',compact('data','laptop','user'));
     }
 
         /**
@@ -28,8 +31,9 @@ class OrderController extends Controller
      */
     public function new()
     {
+        $laptop = Laptop::all();
         $data = Order::all();
-        return view('admin.data.order.new',compact('data'));
+        return view('admin.data.order.new',compact('data','laptop'));
     }
         /**
      * Display a listing of the resource.
@@ -38,8 +42,9 @@ class OrderController extends Controller
      */
     public function finished()
     {
+        $laptop = Laptop::all();
         $data = Order::all();
-        return view('admin.data.order.finished',compact('data'));
+        return view('admin.data.order.finished',compact('data','laptop'));
     }
     /**
      * Show the form for creating a new resource.
@@ -59,7 +64,22 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::create($request->all());
+        $update = Laptop::findOrFail($request->laptop_id);
+        $update->update([
+             'user_id'=> $request->user_id,
+             'status'=>'On Process'
+         ]);
+        if($order&&$update){
+            Alert::success('Pemesanan Sukses', 'Silahkan periksa email anda untuk langkah selanjutnya'.', Email : '.Auth::user()->email);
+            $details = $order;
+            Mail::to(Auth::user()->email)->send(new \App\Mail\Mailer($details));
+            return back();
+        } else {
+            Alert::error('Error saat menambah data', 'Data tidak ditambah');
+            return back();
+        }
+        // dd($request->all());
     }
 
     /**
@@ -102,9 +122,16 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($order)
     {
-        //
+        $delete = Order::destroy($order);
+        if($delete){
+            Alert::success('Berhasil menghapus data');
+            return back();
+        } else {
+            Alert::error('Error saat menghapus data', 'Data tidak dihapus');
+            return back();
+        }
     }
 
     /**
@@ -149,11 +176,8 @@ class OrderController extends Controller
             Mail::to(Auth::user()->email)->send(new \App\Mail\Mailer($details));
             return redirect(route('index'));
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Order Failed!',
-                'data' => ''
-            ],400);
+            Alert::error('Error saat menambah data', 'Data tidak ditambah');
+            return back();
         }
     }
 }

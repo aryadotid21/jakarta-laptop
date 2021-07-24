@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $data = User::all();
         return view('admin.data.user.all',compact('data'));
-    }
+        }
     /**
      * Display a listing of the resource.
      *

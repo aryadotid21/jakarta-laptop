@@ -1,10 +1,10 @@
-@extends('admin.layouts.app');
-@section('title', 'Data Laptop On Hold');
+@extends('admin.layouts.app')
+@section('title', 'Data Laptop On Hold')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card card-lightblue">
                     <div class="card-header">
                         <h3 class="card-title">Data Laptop On Hold</h3>
                     </div>

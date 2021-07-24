@@ -1,10 +1,10 @@
-@extends('admin.layouts.app');
-@section('title', 'Data Admin');
+@extends('admin.layouts.app')
+@section('title', 'Data Admin')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card card-lightblue">
                     <div class="card-header">
                         <h3 class="card-title">Data Admin</h3>
                     </div>

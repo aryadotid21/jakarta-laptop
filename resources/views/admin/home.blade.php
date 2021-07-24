@@ -1,4 +1,4 @@
-@extends('admin.layouts.app');
+@extends('admin.layouts.app')
 @section('content')
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
@@ -115,5 +115,5 @@
         </div>
         <!-- /.row -->
     </div>
-
+    @include('sweetalert::alert')
 @endsection

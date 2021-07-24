@@ -4,7 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jakarta Laptop | @yield('title')</title>
+    <title>
+        @if (View::hasSection('title'))
+            Jakarta Laptop | @yield('title')
+        @else
+            Jakarta Laptop
+        @endif
+    </title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -34,6 +40,8 @@
     <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @include('sweetalert::alert')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -210,6 +218,15 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.chart.index') }}"
+                                class="nav-link {{ Request::routeIs('admin.chart.index') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>
+                                    Data Chart
+                                </p>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.question.index') }}"

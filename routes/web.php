@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\LaptopController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ChartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,20 +46,18 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','as'=>'admin.'],function()
         Route::get('/technician', [UserController::class, 'technician'])->name('technician');
         Route::get('/roles', [UserController::class, 'roles'])->name('roles');
     });
-    Route::resource('user', UserController::class);
-
     Route::group(['prefix'=>'order','as'=>'order.'],function(){
         Route::get('/new', [OrderController::class, 'new'])->name('new');
         Route::get('/finished', [OrderController::class, 'finished'])->name('finished');
     });
-    Route::resource('order', OrderController::class);
-
-
     Route::group(['prefix'=>'laptop','as'=>'laptop.'],function(){
         Route::get('/ready', [LaptopController::class, 'ready'])->name('ready');
         Route::get('/process', [LaptopController::class, 'process'])->name('process');
         Route::get('/hold', [LaptopController::class, 'hold'])->name('hold');
     });
+    Route::resource('chart', ChartController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('order', OrderController::class);
     Route::resource('laptop', LaptopController::class);
     Route::resource('question', QuestionController::class);
 
