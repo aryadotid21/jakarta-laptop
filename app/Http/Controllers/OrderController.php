@@ -120,6 +120,23 @@ class OrderController extends Controller
     {
         $data = Order::findOrFail($order);
         if($data->update($request->all())){
+            if($request->status == "On Process"){
+                $update = Laptop::findOrFail($request->laptop_id);
+                $update->update([
+                    'status'=>'On Process'
+                ]);
+            } elseif ($request->status == "Pending"){
+                $update = Laptop::findOrFail($request->laptop_id);
+                $update->update([
+                    'status'=>'On Process'
+                ]);
+            } else {
+                $update = Laptop::findOrFail($request->laptop_id);
+                $update->update([
+                    'user_id'=>NULL,
+                    'status'=>'Finished'
+                ]);
+            }
             Alert::success('Sukses merubah data','Data berhasil di ubah');
             return back();
         } else{
@@ -153,14 +170,14 @@ class OrderController extends Controller
      */
     public function OrderHistory()
     {
-        $data_laptop = Order::all()->sortByDesc('id')->where('user_id',3);
-        return view('user.order.history',compact("data_laptop"));
+        $data = Order::all()->sortByDesc('id')->where('user_id',Auth::user()->id);
+        return view('user.order.history',compact("data"));
     } 
 
     public function OrderView()
     {
-        $data_laptop = Laptop::all();
-        return view('user.order.view',compact("data_laptop"));
+        $data = Laptop::all();
+        return view('user.order.view',compact("data"));
     } 
     
     public function OrderProccess(Request $request)

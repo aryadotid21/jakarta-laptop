@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Order Form</div>
+                    <div class="card-header bg-dark text-white">Order Form</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('user.order.proccess') }}">
                             @csrf
@@ -57,7 +57,7 @@
                                 <label for="kode_pos" class="col-md-4 col-form-label text-md-right">Kode Pos</label>
 
                                 <div class="col-md-6">
-                                    <input name="kode_pos" type="text" class="form-control">
+                                    <input name="kode_pos" type="number" class="form-control">
                                 </div>
                             </div>
 
@@ -75,10 +75,11 @@
                                 <div class="col-md-6">
                                     <select id="laptop" name="laptop" onclick="calculate()" class="form-control required">
                                         <option value="" selected disabled>Pilih Laptop</option>
-                                        @foreach ($data_laptop as $laptops)
+                                        @foreach ($data as $laptops)
                                             @if ($laptops->status == 'Ready'){
-                                                <option laptop_id="{{ $laptops->id }}" value="{{ $laptops->price }}">
-                                                    {{ $laptops->name }}</option>}
+                                                <option laptop_id="{{ $laptops->id }}"
+                                                    value="{{ $laptops->brand->price }}">
+                                                    {{ $laptops->brand->name }}</option>}
                                             @endif
                                         @endforeach
                                     </select>
@@ -97,7 +98,7 @@
 
                             <div class="form-group row">
                                 <label for="Duration" onkeypress="calculate()"
-                                    class="col-md-4 col-form-label text-md-right">Durasi</label>
+                                    class="col-md-4 col-form-label text-md-right">Durasi ( day )</label>
 
                                 <div class="col-md-6">
                                     <input name="duration" type="number" class="form-control" id="durasi"

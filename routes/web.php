@@ -67,9 +67,9 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','as'=>'admin.'],function()
 
 Route::group(['prefix'=>'technician','middleware'=>'technician','as'=>'technician.'],function(){
     Route::get('/', [HomeController::class, 'technician'])->name('dashboard');
-    Route::resource('order', OrderController::class);
-    Route::resource('user', UserController::class);
-    Route::resource('laptop', LaptopController::class);
+    Route::put('/laptop/add/{laptop}', [App\Http\Controllers\Technician\LaptopController::class, 'addToHold'])->name('addToHold');
+    Route::resource('order', App\Http\Controllers\Technician\OrderController::class);
+    Route::resource('laptop', App\Http\Controllers\Technician\LaptopController::class);
 });
 
 // Route::get('/test',function(){

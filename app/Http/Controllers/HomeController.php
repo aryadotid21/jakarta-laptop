@@ -42,6 +42,9 @@ class HomeController extends Controller
     }
     public function technician()
     {
-        return view('technician.home');
+        $order = Order::all();
+        $laptop = Laptop::all();
+        $question = Question::all();
+        return view('technician.home',compact('order','laptop'));
     }
 }

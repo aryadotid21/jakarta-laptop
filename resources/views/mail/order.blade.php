@@ -171,9 +171,9 @@
             </tr>
 
             <tr class="item">
-                <td>{{ $details->laptop->name }}</td>
+                <td>{{ $details->laptop->brand > name }}</td>
 
-                <td>@currency($details->laptop->price) * {{ $details->duration }} Days</td>
+                <td>@currency($details->laptop->brand->price) * {{ $details->duration }} Days</td>
             </tr>
 
             <tr class="total">

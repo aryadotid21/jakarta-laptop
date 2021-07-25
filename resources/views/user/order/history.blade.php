@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Order History</div>
+                    <div class="card-header bg-dark text-white">Order History</div>
                     <div class="card-body">
                         <table id="history" class="display">
                             <thead>
@@ -19,6 +19,7 @@
                                     <th>Laptop</th>
                                     <th>Delivery To</th>
                                     <th>Duration</th>
+                                    <th>Price / Day</th>
                                     <th>Total Price</th>
                                     <th>Pickup Date</th>
                                     <th>Order Date</th>
@@ -26,14 +27,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($data_laptop as $key => $data)
+                                @forelse($data as $key => $data)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{ $data->laptop->name }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $data->laptop->brand->name }}</td>
                                         <td><a href="#"
                                                 onclick="address('{{ $data->kota }}','{{ $data->kecamatan }}','{{ $data->kode_pos }}','{{ $data->alamat }}');">{{ $data->kota }}</a>
                                         </td>
                                         <td>{{ $data->duration }} Hari</td>
+                                        <td> @currency($data->laptop->brand->price)</td>
                                         <td> @currency($data->total_price)</td>
                                         <td>{{ $data->pickup_date }}</td>
                                         <td>{{ $data->created_at->format('m-d-Y') }}</td>

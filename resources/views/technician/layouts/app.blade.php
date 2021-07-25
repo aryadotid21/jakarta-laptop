@@ -102,144 +102,20 @@
                with font-awesome or any other icon font library -->
                         <li class="nav-header">Data list</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    Data User
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.user.all') }}"
-                                        class="nav-link {{ Request::routeIs('admin.user.all') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All User</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.user.index') }}"
-                                        class="nav-link {{ Request::routeIs('admin.user.index') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>User</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.user.admin') }}"
-                                        class="nav-link  {{ Request::routeIs('admin.user.admin') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Admin</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.user.technician') }}"
-                                        class="nav-link  {{ Request::routeIs('admin.user.technician') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Technician</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.user.roles') }}"
-                                        class="nav-link  {{ Request::routeIs('admin.user.roles') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Roles</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('technician.order.index') }}"
+                                class="nav-link {{ Request::routeIs('technician.order.index') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
                                 <p>
                                     Data Order
-                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.order.index') }}"
-                                        class="nav-link {{ Request::routeIs('admin.order.index') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All order</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.order.new') }}"
-                                        class="nav-link {{ Request::routeIs('admin.order.new') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>New Order</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.order.finished') }}"
-                                        class="nav-link {{ Request::routeIs('admin.order.finished') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Finished Order</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('technician.laptop.index') }}"
+                                class="nav-link {{ Request::routeIs('technician.laptop.index') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-laptop"></i>
                                 <p>
                                     Data Laptop
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.brand.index') }}"
-                                        class="nav-link {{ Request::routeIs('admin.brand.index') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Brand laptop</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.laptop.index') }}"
-                                        class="nav-link {{ Request::routeIs('admin.laptop.index') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All laptop</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.laptop.ready') }}"
-                                        class="nav-link {{ Request::routeIs('admin.laptop.ready') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Laptop Ready</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.laptop.process') }}"
-                                        class="nav-link {{ Request::routeIs('admin.laptop.process') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Laptop on process</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.laptop.hold') }}"
-                                        class="nav-link {{ Request::routeIs('admin.laptop.hold') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Laptop on hold</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.chart.index') }}"
-                                class="nav-link {{ Request::routeIs('admin.chart.index') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p>
-                                    Data Chart
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.question.index') }}"
-                                class="nav-link {{ Request::routeIs('admin.question.index') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-question"></i>
-                                <p>
-                                    Data Question
                                 </p>
                             </a>
                         </li>

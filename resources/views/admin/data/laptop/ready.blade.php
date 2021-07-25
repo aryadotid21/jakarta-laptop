@@ -52,6 +52,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>ID</th>
                                     <th>Laptop</th>
                                     <th>Price</th>
                                     <th>Status</th>
@@ -65,6 +66,7 @@
                                 @forelse($data->where('status','Ready') as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $data->id }}</td>
                                         <td>{{ $data->brand->name }}</td>
                                         <td> @currency($data->brand->price) </td>
                                         <td>{{ $data->status }}</td>
