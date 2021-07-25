@@ -8,7 +8,9 @@
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>{{ $order->whereNotIn('status', ['Finished'])->count() }}</h3>
-                        <p>New Orders ( Today: {{ $order->where('created_at', '>=', Carbon::today())->count() }} )</p>
+                        <p>New Orders ( Today:
+                            {{ $order->whereNotIn('status', ['Finished'])->where('created_at', '>=', Carbon::today())->count() }}
+                            )</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -22,8 +24,9 @@
                 <div class="small-box bg-primary">
                     <div class="inner">
                         <h3> @currency($order->where('status', 'Finished')->sum('total_price')) </h3>
-                        <p>Total Income ( Pending:
-                            @currency($order->whereNotIn('status',['Finished'])->sum('total_price')) )</p>
+                        <p>Total Income ( Today:
+                            @currency($order->where('status', 'Finished')->where('created_at', '>=',
+                            Carbon::today())->sum('total_price')) )</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-cash"></i>
@@ -37,7 +40,9 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>{{ $user->where('role_id', 3)->count() }}</h3>
-                        <p>User Registrations</p>
+                        <p>User Registrations ( Today:
+                            {{ $user->where('role_id', 3)->where('created_at', '>=', Carbon::today())->count() }}
+                            )</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -64,7 +69,9 @@
                 <div class="small-box bg-secondary">
                     <div class="inner">
                         <h3>{{ $order->where('status', 'Finished')->count() }}</h3>
-                        <p>Finished Order</p>
+                        <p>Finished Order ( Today:
+                            {{ $order->where('status', 'Finished')->where('created_at', '>=', Carbon::today())->count() }}
+                            )</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-android-checkmark-circle"></i>

@@ -40,11 +40,7 @@
                                         <select name="status" class="custom-select">
                                             <option @if ($data->status == 'Ready') selected @endif value="Ready">Ready
                                             </option>
-                                            <option @if ($data->status == 'On Process') selected @endif value="On Process">On Process
-                                            </option>
                                             <option @if ($data->status == 'Hold') selected @endif value="Hold">Hold
-                                            </option>
-                                            <option @if ($data->status == 'Finished') selected @endif value="Finished">Finished
                                             </option>
                                         </select>
                                     </div>

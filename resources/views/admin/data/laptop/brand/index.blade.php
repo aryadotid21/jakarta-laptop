@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Data Laptop')
+@section('title', 'Data Brand Laptop')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -53,6 +53,8 @@
                                     <th>Laptop</th>
                                     <th>Price</th>
                                     <th>Jumlah Unit</th>
+                                    <th>Unit Ready</th>
+                                    <th>Unit Not Ready</th>
                                     <th>Option</th>
                                 </tr>
                             </thead>
@@ -63,6 +65,8 @@
                                         <td>{{ $data->name }}</td>
                                         <td> @currency($data->price) </td>
                                         <td>{{ $data->laptop->count() }}</td>
+                                        <td>{{ $data->laptop->where('status', 'Ready')->count() }}</td>
+                                        <td>{{ $data->laptop->whereNotIn('status', ['Ready'])->count() }}</td>
                                         <td>
                                             <!-- Call to action buttons -->
                                             <ul class="list-inline m-0">

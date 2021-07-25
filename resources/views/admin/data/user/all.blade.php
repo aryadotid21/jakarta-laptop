@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card card-lightblue">
                     <div class="card-header">
-                        <h3 class="card-title">Insert new order</h3>
+                        <h3 class="card-title">Insert new data</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->

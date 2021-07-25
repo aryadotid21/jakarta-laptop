@@ -42,6 +42,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @include('sweetalert::alert')
+    <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/svg">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -246,7 +247,7 @@
                         <li class="nav-item">
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                class="nav-link {{ Request::routeIs('admin.question.index') ? 'active' : '' }}">
+                                class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
                                     Logout
@@ -290,10 +291,11 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            <strong>Copyright &copy; {{ Carbon::now()->format('Y') }} <a
+                    href="https://aryadotid21.github.io/">Muhammad Arya Dyas</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.1.0
+                <b>Version</b> 1.0
             </div>
         </footer>
 

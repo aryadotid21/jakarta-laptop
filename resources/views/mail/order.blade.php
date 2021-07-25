@@ -121,7 +121,7 @@
 
 <body>
     <h1>Dear, {{ Auth::user()->name }}</h1>
-    <h3>Thank you for rent a laptop from Rental Laptop Jakarta.</h3>
+    <h3>Thank you for rent a laptop from Jakarta Laptop.</h3>
     <h3>Your Order Details is : </h3>
 
     <div class="invoice-box">
@@ -171,7 +171,7 @@
             </tr>
 
             <tr class="item">
-                <td>{{ $details->laptop->brand > name }}</td>
+                <td>{{ $details->laptop->brand->name }}</td>
 
                 <td>@currency($details->laptop->brand->price) * {{ $details->duration }} Days</td>
             </tr>
@@ -186,7 +186,7 @@
     <h3>You can pick up your order from our office in {{ $details->kota }} on
         {{ $details->pickup_date }} at working hours ( 8.00AM - 19.00PM ) and don't forget to bring your
         identity card</h3>
-    <h3>Regards, Rental Laptop Jakarta.</h3>
+    <h3>Regards, Jakarta Laptop.</h3>
 
 </body>
 

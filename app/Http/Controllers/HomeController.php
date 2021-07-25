@@ -42,9 +42,11 @@ class HomeController extends Controller
     }
     public function technician()
     {
+
+        $user = User::all();
         $order = Order::all();
         $laptop = Laptop::all();
         $question = Question::all();
-        return view('technician.home',compact('order','laptop'));
+        return view('technician.home',compact('order','user','laptop','question'));
     }
 }

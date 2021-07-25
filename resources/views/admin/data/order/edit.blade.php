@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>User Name</label>
+                                        <label>Email</label>
                                         <select name="user_id" class="custom-select">
                                             <option value="" selected disabled>Pilih User</option>
                                             @foreach ($user as $user)

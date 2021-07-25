@@ -11,11 +11,13 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/svg">
     <title>Jakarta Laptop</title>
 </head>
 
 <body style="height:100%">
-    <nav class="navbar navbar-expand-md navbar-light sticky-top justify-content-between" id="navbar">
+    <nav data-aos="fade-down" data-aos-duration="1250"
+        class="navbar navbar-expand-md navbar-light sticky-top justify-content-between" id="navbar">
         <div class="container">
             <a class="navbar-brand font-weight-bold" style="color:#3C4858;">Jakarta <span
                     class="text-info">Laptop</span></a>
@@ -72,7 +74,7 @@
     </nav>
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1500">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="1000">
                 <h1 class="heading mb-3">Butuh Laptop Cepat?
                     <span class="text-primary">Jakarta Laptop.</span> aja
                 </h1>
@@ -93,7 +95,7 @@
                 @endguest
 
             </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1500">
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="1000">
                 <div class="text-md-right text-center"><img src="{{ asset('images/atl-2-c.png') }}" class="img-fluid"
                         style="width:70%"></div>
             </div>
@@ -120,7 +122,6 @@
                         <h5 class="card-title">Macbook Pro 13 2020</h5>
                         <p class="card-text">Apple's most powerful notebooks featuring fast processors, incredible
                             graphics, Touch Bar, and a spectacular Retina display.</p>
-                        <p class="card-text"><small class="text-muted">IDR 175 K / Day</small></p>
                     </div>
                 </div>
                 <div class="card" data-aos="fade-down" data-aos-duration="1500">
@@ -130,7 +131,6 @@
                         <p class="card-text">Ultra-light and versatile. At your desk, on the couch, or in the yard, get
                             more done your way with Surface Pro 7, featuring a laptop-class Intel® Core™ processor,
                             all-day battery,¹ and HD cameras.</p>
-                        <p class="card-text"><small class="text-muted">IDR 120 K / Day</small></p>
                     </div>
                 </div>
                 <div class="card" data-aos="fade-left" data-aos-duration="1500">
@@ -140,7 +140,6 @@
                         <p class="card-text">With the Intel® Evo™ platform, the ThinkPad X1 Carbon Gen 9 laptop delivers
                             a powerhouse combination of performance, responsiveness, battery life, and stunning visuals.
                             With up to 11th Gen Intel® Core™ i7 vPro® processors.</p>
-                        <p class="card-text"><small class="text-muted">IDR 150 K / Day</small></p>
                     </div>
                 </div>
             </div>
@@ -200,7 +199,7 @@
         </svg>
         <div class="container" style="margin-top: -50px">
             <div class="col-lg-12 text-center">
-                <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="3000">Find Us On Google Maps</h4>
+                <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1500">Find Us On Google Maps</h4>
                 <div class="map-responsive" data-aos="fade-up" data-aos-duration="3000">
                     <iframe width="900px" height="550px" frameborder="0" style="border-radius:20px"
                         src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJMVL-yvj1aS4R_r10UGTZU5w&key=AIzaSyBNX0f53ALAO7cT8zb3PiBrRtorxRGSsu0"
@@ -219,15 +218,23 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="jumbotron" style="text-align: center;background-color: #202942;">
-                    <a href="https://www.instagram.com/dya_az/" style="font-size:30px" class="fa fa-instagram"></a>
-                    <a href="https://goo.gl/maps/1Pj9YT9xEJKBL4oaA" style="font-size:30px" class="fa fa-map-marker"></a>
-                    <a href="https://wa.me/+62895613367705" style="font-size:30px" class="fa fa-whatsapp"></a>
-                    <h6 style="color:rgb(223, 223, 223);">Muhammad Arya Dyas</h6>
-                    <h6 style="color:rgb(223, 223, 223);">&#169; {{ date('Y') }}</h6>
-                    <h4 style="color:rgb(158, 158, 158)">SMKN 1 Cibinong</h4>
-                    <a href="#" class="fa fa-angle-up" style="margin-bottom: -10%;color:rgb(223, 223, 223);"></a>
+                    <a data-aos="fade-right" data-aos-duration="1250" href="https://www.instagram.com/dya_az/"
+                        style="font-size:30px" class="fa fa-instagram"></a>
+                    <a data-aos="fade-down" data-aos-duration="1250" href="https://goo.gl/maps/1Pj9YT9xEJKBL4oaA"
+                        style="font-size:30px" class="fa fa-map-marker"></a>
+                    <a data-aos="fade-left" data-aos-duration="1250" href="https://wa.me/+62895613367705"
+                        style="font-size:30px" class="fa fa-whatsapp"></a>
+                    <h6 data-aos="fade-down" data-aos-duration="1250" style="color:rgb(223, 223, 223);">Muhammad Arya
+                        Dyas</h6>
+                    <h6 data-aos="fade-down" data-aos-duration="1250" style="color:rgb(223, 223, 223);">&#169;
+                        {{ date('Y') }}</h6>
+                    <h4 data-aos="fade-down" data-aos-duration="1250" style="color:rgb(158, 158, 158)">SMKN 1 Cibinong
+                    </h4>
+                    <a data-aos="fade-down" data-aos-duration="1250" href="#" onclick="window.scrollTo(0, 0);"
+                        class="fa fa-angle-up" style="margin-bottom: -10%;color:rgb(223, 223, 223);"></a>
                     <a href="#" onclick="window.scrollTo(0, 0);" style="text-decoration:none;">
-                        <h4 style="color:rgb(158, 158, 158)">Back To Top</h4>
+                        <h4 data-aos="fade-down" data-aos-duration="1250" style="color:rgb(158, 158, 158)">Back To Top
+                        </h4>
                     </a>
                 </div>
             </div>

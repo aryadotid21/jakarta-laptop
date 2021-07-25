@@ -132,6 +132,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>User</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Laptop</th>
                                     <th>Kota</th>
                                     <th>Kecamatan</th>
@@ -150,6 +152,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->user->name }}</td>
+                                        <td>{{ $data->user->email }}</td>
+                                        <td>{{ $data->user->phone }}</td>
                                         <td>{{ $data->laptop->brand->name }} ({{ $data->laptop->id }})</td>
                                         <td>{{ $data->kota }}</td>
                                         <td>{{ $data->kecamatan }}</td>

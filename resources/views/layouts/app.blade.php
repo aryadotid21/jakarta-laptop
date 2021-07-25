@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Jakarta Laptop</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -33,7 +33,8 @@
 
 <body style="height: 100%">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light sticky-top justify-content-between" id="navbar">
+        <nav class="navbar navbar-expand-md navbar-light sticky-top justify-content-between" id="navbar"
+            data-aos="fade-down" data-aos-duration="1250">
             <div class="container">
                 <a href="{{ route('index') }}" class="navbar-brand font-weight-bold" style="color:#3C4858;">Jakarta
                     <span class="text-info">Laptop</span></a>
